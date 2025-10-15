@@ -67,11 +67,13 @@ export const AuthProvider = ({ children }) => {
     // Login function
     const login = async (userData) => {
         try {
+            console.log(userData);
             const response = await axios.post(
                 "http://localhost:5000/api/auth/login",
                 userData,
                 { withCredentials: true }
             );
+            await console.log(response.data.message)
             if (response.data.message === "Login successfully") {
                 await fetchUser(); // refresh user after login
                 return true;
